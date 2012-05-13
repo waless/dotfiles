@@ -5,6 +5,6 @@ This repository is managing the various configuration files
 
 Install
 ================================================================================
-Copy or symbolic link to home directory
-At a later date to create the installation shell
+Copy or symbolic link to home directory  
+At a later date to create the installation shell  
 

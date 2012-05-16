@@ -19,6 +19,7 @@ if has('vim_starting')
 endif
 
 " プラグインの配置
+NeoBundle 'ack.vim'
 NeoBundle 'fugalh/desert.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'

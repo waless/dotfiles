@@ -13,6 +13,12 @@ set encoding=utf-8
 " vim-bundle
 filetype off
 
+" terminal-cursor switch normal/insert
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
+
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle'))

@@ -14,7 +14,7 @@ set encoding=utf-8
 filetype off
 
 if has('vim_starting')
-    set runtimepath+='~/.vim/autoload/neobundle.vimfiles'
+    set runtimepath+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle'))
 endif
 
@@ -46,9 +46,10 @@ NeoBundle 'Zenburn'
 
 filetype plugin on
 filetype indent on
+filetype on
 
 " 改行コードの自動認識
-set fileformats=unix,dos,mac
+set fileformats=unix
 
 " 行番号の表示
 set number
@@ -67,8 +68,8 @@ set statusline+=%=\ %m%r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}\ %l,%c%
 " 行の最大幅。0で自動改行を行わない
 set textwidth=0
 
-" バックアップディレクトリを設定
-set backupdir=~/.vim/tmp/backup
+" バックアップは不要
+set nobackup
 
 " スワップディレクトリ設定
 set directory=~/.vim/tmp/swap
@@ -97,6 +98,9 @@ set autoindent
 " C言語の高度なインデントを使用
 set smartindent
 
+" インクリメンタル検索を使用する
+set incsearch
+
 " 指定文字数で自動改行
 set formatoptions+=mM
 set textwidth=80
@@ -117,6 +121,12 @@ autocmd QuickFixCmdPost make,grep,grepadd,vimgrep if len(getqflist()) != 0 | cop
 
 " 外部grepはパスが通っているものを使用
 set grepprg=grep\ -nH
+
+" 256colorが使用できるならsyntaxとcolorscheme有効
+if &t_Co >= 256 || has('gui_starting')
+    syntax on
+    colorscheme lucius
+endif
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup=1
@@ -213,7 +223,7 @@ source ~/.vimrc.local
 " 環境別に作業ディレクトリへ移動する可能性があるため、データベースを追加するため
 " 環境別設定の後に設定する
 if has('cscope')
-    set csprg=~/../../usr/local/bin/cscope
+    set csprg=mlcscope
     set csto=0
     set cst
     set nocsverb

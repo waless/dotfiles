@@ -19,6 +19,10 @@ let &t_SI.="\e[5 q"
 let &t_EI.="\e[1 q"
 let &t_te.="\e[0 q"
 
+let &t_SI.="\e[<r"
+let &t_EI.="\e[<s\e[<0t"
+let &t_te.="\e[<0t\e[<s"
+
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
     call neobundle#rc(expand('~/.vim/bundle'))

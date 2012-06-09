@@ -8,3 +8,7 @@ export PATH=~/bin:$PATH
 export VIM=/usr/local/share/vim
 export VIMRUNTIME=$VIM/vim73
 
+# rbenv setting
+export PATH=~/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+

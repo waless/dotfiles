@@ -111,9 +111,20 @@ set smartindent
 " インクリメンタル検索を使用する
 set incsearch
 
-" 指定文字数で自動改行
-set formatoptions+=mM
-set textwidth=80
+" 末尾まで検索したら最初から検索する
+set wrapscan
+
+" 検索文字列をハイライトする
+set hlsearch
+
+" 検索時、大文字小文字を区別しない
+set ignorecase
+
+" 検索時、大文字が含まれていれば大文字小文字を区別する
+set smartcase
+
+" ウィンドウの幅を超えても折り返さない
+set nowrap
 
 " 行を超えて機能するキーを設定
 set whichwrap=b,s,h,l,<,>,[,]

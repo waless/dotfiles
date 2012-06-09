@@ -62,7 +62,10 @@ filetype on
 set fileformats=unix
 
 " 行番号の表示
-set number
+"set number
+
+" 病番号を相対的に表示
+set relativenumber
 
 " カーソル位置をハイライト
 set cursorline

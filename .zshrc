@@ -12,3 +12,5 @@ export VIMRUNTIME=$VIM/vim73
 export PATH=~/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
+export PATH
+

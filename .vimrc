@@ -23,6 +23,10 @@ if has('win32unix')
     let &t_SI.="\e[<r"
     let &t_EI.="\e[<s\e[<0t"
     let &t_te.="\e[<0t\e[<s"
+elseif has('mac')
+    let &t_SI="\<ESC>]50;CursorShape=1\x7"
+    let &t_EI="\<ESC>]50;CursorShape=0\x7"
+    inoremap <ESC> <ESC>gg`]
 endif
 
 if has('vim_starting')
@@ -249,7 +253,12 @@ source ~/.vimrc.local
 " 環境別に作業ディレクトリへ移動する可能性があるため、データベースを追加するため
 " 環境別設定の後に設定する
 if has('cscope')
-    set csprg=mlcscope
+    if has('win32cygwin')
+        set csprg=mlcscope
+    else
+        set csprg=cscope
+    endif
+
     set csto=0
     set cst
     set nocsverb

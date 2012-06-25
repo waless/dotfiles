@@ -2,12 +2,11 @@
 # apt-cyg setting
 alias apt-cyg='apt-cyg -m ftp://ftp.jaist.ac.jp/pub/cygwin/ -c /package'
 
-export PATH=/usr/local/bin:$PATH
-export PATH=~/bin:$PATH
-
-export VIM=~/install/vim/share/vim
+export VIM=~/install/share/vim
 export VIMRUNTIME=$VIM/vim73
-export PATH=~/install/vim/bin:$PATH
+
+export PATH=/usr/local/bin:$PATH
+export PATH=~/install/bin:$PATH
 
 # rbenv setting
 export PATH=~/.rbenv/bin:$PATH
@@ -16,4 +15,6 @@ eval "$(rbenv init -)"
 export TERM=xterm-256color
 
 export PATH
+
+[ ${STY} ] || screen -rx || screen -D -RR
 

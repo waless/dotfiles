@@ -15,17 +15,17 @@ filetype off
 
 " terminal-cursor switch normal/insert
 if has('win32unix')
-    let &t_ti.="\e[1 q"
-    let &t_SI.="\e[5 q"
-    let &t_EI.="\e[1 q"
-    let &t_te.="\e[0 q"
+    let &t_ti.="\eP\e[1 q\e\\"
+    let &t_SI.="\eP\e[5 q\e\\"
+    let &t_EI.="\eP\e[1 q\e\\"
+    let &t_te.="\eP\e[0 q\e\\"
 
-    let &t_SI.="\e[<r"
-    let &t_EI.="\e[<s\e[<0t"
-    let &t_te.="\e[<0t\e[<s"
+    let &t_SI.="\eP\e[<r\e\\"
+    let &t_EI.="\eP\e[<s\e[<0t\e\\"
+    let &t_te.="\eP\e[<0t\e[<s\e\\"
 elseif has('mac')
-    let &t_SI="\<ESC>]50;CursorShape=1\x7"
-    let &t_EI="\<ESC>]50;CursorShape=0\x7"
+    let &t_SI="\eP\<ESC>]50;CursorShape=1\x7\e\\"
+    let &t_EI="\eP\<ESC>]50;CursorShape=0\x7\e\\"
     inoremap <ESC> <ESC>gg`]
 endif
 

@@ -141,6 +141,10 @@ set whichwrap=b,s,h,l,<,>,[,]
 " 外部でファイルが変更された時、自動で読み込む
 set autoread
 
+" バックスペースの挙動設定
+" indend :行頭の空白の削除を許可 
+" eol    :改行の削除を許可
+" start  :挿入モードの開始位置でも削除を許可
 set backspace=indent,eol,start
 
 " tagファイルをディレクトリを遡るように

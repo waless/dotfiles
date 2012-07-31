@@ -141,6 +141,8 @@ set whichwrap=b,s,h,l,<,>,[,]
 " 外部でファイルが変更された時、自動で読み込む
 set autoread
 
+set backspace=indent,eol,start
+
 " tagファイルをディレクトリを遡るように
 if has('path_extra')
     set tags=./tags;

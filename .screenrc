@@ -1,5 +1,14 @@
 
-defbce "on"
+# clear current background color
+defbce on
+
+# bold font is light color
+attrcolor b ".I"
+
+# use 256color
 term xterm-256color
 termcapinfo xterm-256color 'is=^[r^[mJ^[H^[?7h^[?1;4;6l'
+
+# shell = default shell
+shell $SHELL
 

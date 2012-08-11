@@ -9,7 +9,7 @@ export PATH=/usr/local/bin:$PATH
 export PATH=~/install/bin:$PATH
 
 # rbenv setting
-export PATH=~/.rbenv/bin:$PATH
+export PATH=~/install/rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
 export TERM=xterm-256color

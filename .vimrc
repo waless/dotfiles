@@ -31,19 +31,18 @@ endif
 
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
-    call neobundle#rc(expand('~/.vim/bundle'))
+    call neobundle#rc(expand('$HOME/.vim/bundle'))
 endif
 
 " プラグインの配置
 NeoBundle 'ack.vim'
+NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'fugalh/desert.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
-NeoBundle 'mattn/hahhah-vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
-"NeoBundle 'Shougo/neocomplcache-clang'
-NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neocomplcache-clang'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimproc'
 NeoBundle 'thinca/vim-ref'
@@ -70,7 +69,7 @@ set fileformats=unix
 " 行番号の表示
 set number
 
-" 病番号を相対的に表示
+" 行番号を相対的に表示
 "set relativenumber
 
 " カーソル位置をハイライト
@@ -91,7 +90,7 @@ set textwidth=0
 set nobackup
 
 " スワップディレクトリ設定
-set directory=~/.vim/tmp/swap
+set directory=$HOME/.vim/tmp/swap
 
 " vi互換を行わない
 set nocompatible
@@ -166,7 +165,7 @@ endif
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_max_list=10
+let g:neocomplcache_max_list=100
 let g:neocomplcache_manual_completion_start_length=0
 let g:neocomplcache_auto_completion_start_length=2
 let g:neocomplcache_enable_smart_case=1
@@ -177,8 +176,10 @@ let g:neocomplcache_temporary_dir='~/.vim/tmp/neocon'
 
 " タブが押された時、補完中で、スニペットが選択されていたら展開し、
 " そうでなければ共通部分まで補完する
-" inoremap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? neocomplcache#complete_common_string() : "\<TAB>"
-inoremap <expr><TAB> pumvisible() ? neocomplcache#sources#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : neocomplcache#complete_common_string() : "\<TAB>"
+if g:neocomplcache_enable_at_startup
+    imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+endif
+vmap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_jump_or_expand)" ? "\<Tab>"
 
 " バックスペース時、補完表示を閉じる
 inoremap <expr><C-h> neocomplcache#smart_close_popup() . "\<C-h>"
@@ -189,15 +190,25 @@ inoremap <expr><C-y> neocomplcache#close_popup()
 " 補完キャンセル
 inoremap <expr><C-e> neocomplcache#cancel_popup()
 
-" neocomplcache-snippets-complete
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
-let g:neocomplcache_snippets_dir='~/.vim/snippets'
+" neosnippet
+imap <C-k> <Plug>(neosnippet_expand)
+smap <C-k> <Plug>(neosnippet_expand)
+let g:neosnippet#snippets_directory='$HOME/.vim/snippets'
 
 " neocomplcache-clang
-"let g:neocomplcache_clang_use_library=1
-"let g:neocomplcache_clang_library_path='~/../../usr/local/bin'
-"let g:neocomplcache_clang_user_options='-fms-extensions -fgnu-runtime'
+let g:neocomplcache_clang_use_library=1
+let g:neocomplcache_clang_library_path='E:/user/waless/program/llvm/3.1-mingw32/bin'
+let g:neocomplcache_clang_user_options=
+            \'-I C:/MinGW/lib/gcc/mingw32/4.6.2/include'.
+            \'-I C:/MinGW/lib/gcc/mingw32/4.6.2/include/c++'.
+            \'-I C:/Min-fms-extensions -fgnu-runtime'
+
+let $C_INCLUDE_PATH='C:/MinGW/lib/gcc/mingw32/4.6.2/include'
+let $CPP_INCLUDE_PATH='C:/MinGW/lib/gcc/mingw32/4.6.2/include/c++'
+set path+=$C_INCLUDE_PATH
+set path+=$CPP_INCLUDE_PATH
+
+autocmd FileType python let b:did_ftplugin = 1
 
 " unite
 " uniteプレフィックスキー設定
@@ -239,10 +250,6 @@ nnoremap <silent> [unite]t  :<C-u>Unite tag<CR>
 nnoremap <silent> [unite]ti :<C-u>Unite tag/include<CR>
 nnoremap <silent> [unite]tf :<C-u>Unite tag/file<CR>
 
-" vimshell
-" 一時ディレクトリ指定
-let g:vimshell_temporary_directory='~/.vim/tmp/vimshell'
-
 " vim-ref
 if has('vim_starting') && has('win32')
     let $PATH=$PATH . ';C:/Program Files/Lynx for Win32'
@@ -253,7 +260,9 @@ let g:ref_alc_encoding='euc-jp'
 nnoremap <Space>tl : <C-u>Tlist<CR>
 
 " 環境別の設定ファイル
-source ~/.vimrc.local
+if exists('$HOME/.vimrc.local')
+    source $HOME/.vimrc.local
+endif
 
 " cscope
 " 環境別に作業ディレクトリへ移動する可能性があるため、データベースを追加するため
@@ -281,4 +290,7 @@ endif
 
 "エラー音を出ないように
 set visualbell t_vb=
+
+"背景暗く
+set background=dark
 

@@ -1,17 +1,20 @@
 
 colorscheme lucius
 
+set background=dark
+
 set visualbell t_vb=
 autocmd guienter * FullScreen
 
-" win32—pİ’è
+" win32ç”¨è¨­å®š
 if has('win32')
-    " ƒtƒHƒ“ƒg
+    " ãƒ•ã‚©ãƒ³ãƒˆ
     set encoding=cp932
+    "set guifont="Source Code Pro æ¨™æº–":h11
     set guifont=Ricty:h11
-    "set guifont=Osaka|“™•:h11
+    "set guifont=Osakaï¼ç­‰å¹…:h11
     "set guifontwide=MS_Gothic:h11
-    "set guifontwide=Osaka|“™•:h11
+    "set guifontwide=Osakaï¼ç­‰å¹…:h11
     set guifontwide=Ricty:h11
     set ambiwidth=double
     set encoding=utf-8

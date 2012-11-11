@@ -1,6 +1,6 @@
 BoldAsFont=no
 Transparency=high
-Font=Ricty
+Font=Source Code Pro
 Locale=ja_JP
 Charset=UTF-8
 Scrollbar=none
@@ -21,3 +21,4 @@ BoldBlue=111,84,255
 BoldMagenta=255,63,255
 BoldCyan=0,255,255
 BoldWhite=255,255,255
+FontHeight=9

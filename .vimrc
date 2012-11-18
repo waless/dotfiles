@@ -165,7 +165,7 @@ endif
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup=1
-let g:neocomplcache_max_list=100
+let g:neocomplcache_max_list=300
 let g:neocomplcache_manual_completion_start_length=0
 let g:neocomplcache_auto_completion_start_length=2
 let g:neocomplcache_enable_smart_case=1
